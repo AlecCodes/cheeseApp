@@ -57,7 +57,6 @@ app.get("/cheeses", async (req,res)=>{
 //POST route
 app.post("/cheeses", async(req,res)=>{
     try{
-        req.body.isFunny = req.body.isFunny === 'on' ? true : false;
         res.json(await Cheese.create(req.body))
     } catch (error){
         res.status(400).json(error)
