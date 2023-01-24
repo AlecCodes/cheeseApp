@@ -3,14 +3,15 @@ const express = require('express')
 const app = express();
 const morgan = require('morgan')
 const cors = require('cors')
+const corsOptions = require('./config/cors')
 require('dotenv').config();
 const PORT = process.env.PORT || 3001
-const DATABASE_URL = process.env.DATABASE_URL
+const {DATABASE_URL, NODE_ENV} = process.env
 
 //MIDDLEWARE
 app.use(express.json())
 app.use(morgan('dev'))
-app.use(cors())
+app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors())
 
 ////////////////////////////////////////////////
 //MONGOOSE CONNECTION
