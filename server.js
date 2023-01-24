@@ -4,6 +4,7 @@ const app = express();
 const morgan = require('morgan')
 const cors = require('cors')
 const corsOptions = require('./config/cors')
+const mongoose = require('./db/connection')
 require('dotenv').config();
 const PORT = process.env.PORT || 3001
 const {DATABASE_URL, NODE_ENV} = process.env
@@ -12,21 +13,23 @@ const {DATABASE_URL, NODE_ENV} = process.env
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors())
+//app.use(express.state("public"))
+
 
 ////////////////////////////////////////////////
 //MONGOOSE CONNECTION
 ////////////////////////////////////////////////
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
-mongoose.connect(DATABASE_URL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-})
+// mongoose.connect(DATABASE_URL, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true
+// })
 
-mongoose.connection
-    .on("open", ()=> console.log("You are connected to mongoose"))
-    .on("close", ()=> console.log("You are disconnected from mongoose"))
-    .on("error", (error) => console.log(error))
+// mongoose.connection
+//     .on("open", ()=> console.log("You are connected to mongoose"))
+//     .on("close", ()=> console.log("You are disconnected from mongoose"))
+//     .on("error", (error) => console.log(error))
 
 
 ////////////////////////////////////////////////////////////////
