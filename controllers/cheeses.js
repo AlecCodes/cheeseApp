@@ -30,7 +30,7 @@ router.post("/", auth, async(req,res)=>{
         res.status(400).json(error)
     }
 })
-//PUT Route
+//Update Route
 router.put("/:id", auth, async(req,res) => {
     try{
         const {username} = req.payload
@@ -41,7 +41,7 @@ router.put("/:id", auth, async(req,res) => {
     }
 })
 //DELETE Route
-router.delete("/:id", async(req,res)=> {
+router.delete("/:id", auth, async(req,res)=> {
     try{
         res.json(await Cheese.findByIdAndRemove(req.params.id))
     }catch(error){
