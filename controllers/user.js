@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const {Router} = require("express")
 const router = Router()
 const jwt = require('jsonwebtoken')
-const {secret} = process.env || 'bruh'
+const {secret} = process.env 
 
 router.get('/', (req,res)=>{
     res.json({message:"auth router"})
