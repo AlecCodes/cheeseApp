@@ -6,6 +6,10 @@ const router = Router()
 const jwt = require('jsonwebtoken')
 const {secret} = process.env || 'bruh'
 
+router.get('/', (req,res)=>{
+    res.json({message:"auth router"})
+})
+
 router.post("/signup", async(req,res)=>{
     try{
     req.body.password = bcrypt.hash(req.body.password, 10)
@@ -24,6 +28,7 @@ router.post('/login', async(req,res) => {
             const match = await bcrypt.compare(password, user.password)
             if(match){
                 const token = await jwt.sign({username}, secret)
+                res.status(200).json({token})
             }else{
                 res.status(400).json({error: "password does not match"})
             }
@@ -36,4 +41,4 @@ router.post('/login', async(req,res) => {
     }
 })
 
-module.exports = Router
+module.exports = router
