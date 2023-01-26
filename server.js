@@ -15,6 +15,7 @@ const auth = require("./auth/index")
 //MIDDLEWARE
 app.use(express.json())
 app.use(morgan('dev'))
+app.use(cors())
 // app.use(NODE_ENV === 'production' ? cors(corsOptions) : cors())
 
 //Routers
