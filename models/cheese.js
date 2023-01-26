@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose')
 
 const CheeseSchema = new Schema({
-    username: {type: String, unique: true},
+    username: {type: String},
     name: String,
     image: String,
     country: String
